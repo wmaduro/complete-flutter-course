@@ -43,6 +43,10 @@ class FakeProductsRepository {
     return watchProductsList().map((products) => _getProduct(products, id));
   }
 
+  Future<Product?> fetchProduct(String id) {
+    return fetchProductsList().then((products) => _getProduct(products, id));
+  }
+
   static Product? _getProduct(List<Product> products, String id) {
     try {
       return products.firstWhere((product) => product.id == id);
@@ -67,7 +71,12 @@ final productsListFutureProvider = FutureProvider.autoDispose<List<Product>>((re
   return productsRepository.fetchProductsList();
 });
 
-final productProvider = StreamProvider.autoDispose.family<Product?, String>((ref, id) {
+final productStreamProvider = StreamProvider.autoDispose.family<Product?, String>((ref, id) {
   final productsRepository = ref.watch(productsRepositoryProvider);
   return productsRepository.watchProduct(id);
+});
+
+final productFutureProvider = FutureProvider.autoDispose.family<Product?, String>((ref, id) {
+  final productsRepository = ref.watch(productsRepositoryProvider);
+  return productsRepository.fetchProduct(id);
 });

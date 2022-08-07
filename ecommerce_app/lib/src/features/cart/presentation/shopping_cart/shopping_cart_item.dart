@@ -32,7 +32,7 @@ class ShoppingCartItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final productValue = ref.watch(productProvider(item.productId));
+    final productValue = ref.watch(productStreamProvider(item.productId));
     return AsyncValueWidget<Product?>(
       value: productValue,
       data: (product) => Padding(
@@ -72,8 +72,7 @@ class ShoppingCartItemContents extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final priceFormatted =
-        ref.watch(currencyFormatterProvider).format(product.price);
+    final priceFormatted = ref.watch(currencyFormatterProvider).format(product.price);
     return ResponsiveTwoColumnLayout(
       startFlex: 1,
       endFlex: 2,
@@ -134,18 +133,15 @@ class EditOrRemoveItemWidget extends ConsumerWidget {
           itemIndex: itemIndex,
           onChanged: state.isLoading
               ? null
-              : (quantity) => ref
-                  .read(shoppingCartScreenControllerProvider.notifier)
-                  .updateItemQuantity(item.productId, quantity),
+              : (quantity) =>
+                  ref.read(shoppingCartScreenControllerProvider.notifier).updateItemQuantity(item.productId, quantity),
         ),
         IconButton(
           key: deleteKey(itemIndex),
           icon: Icon(Icons.delete, color: Colors.red[700]),
           onPressed: state.isLoading
               ? null
-              : () => ref
-                  .read(shoppingCartScreenControllerProvider.notifier)
-                  .removeItemById(item.productId),
+              : () => ref.read(shoppingCartScreenControllerProvider.notifier).removeItemById(item.productId),
         ),
         const Spacer(),
       ],
