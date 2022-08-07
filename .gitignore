@@ -1,2 +1,6 @@
 /build/
 .DS_Store
+ecommerce_app/macos/Flutter/GeneratedPluginRegistrant.swift
+ecommerce_app/windows/flutter/generated_plugin_registrant.cc
+ecommerce_app/windows/flutter/generated_plugin_registrant.h
+ecommerce_app/windows/flutter/generated_plugins.cmake

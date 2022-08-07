@@ -47,10 +47,10 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
       body: CustomScrollView(
         controller: _scrollController,
         slivers: const [
-          ResponsiveSliverCenter(
-            padding: EdgeInsets.all(Sizes.p16),
-            child: ProductsSearchTextField(),
-          ),
+          //   ResponsiveSliverCenter(
+          //     padding: EdgeInsets.all(Sizes.p16),
+          //     child: ProductsSearchTextField(),
+          //   ),
           ResponsiveSliverCenter(
             padding: EdgeInsets.all(Sizes.p16),
             child: ProductsGrid(),

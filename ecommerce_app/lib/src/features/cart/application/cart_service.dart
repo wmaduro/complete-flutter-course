@@ -85,8 +85,7 @@ final cartTotalProvider = Provider.autoDispose<double>((ref) {
   if (cart.items.isNotEmpty && productsList.isNotEmpty) {
     var total = 0.0;
     for (final item in cart.items.entries) {
-      final product =
-          productsList.firstWhere((product) => product.id == item.key);
+      final product = productsList.firstWhere((product) => product.id == item.key);
       total += product.price * item.value;
     }
     return total;
@@ -95,8 +94,7 @@ final cartTotalProvider = Provider.autoDispose<double>((ref) {
   }
 });
 
-final itemAvailableQuantityProvider =
-    Provider.autoDispose.family<int, Product>((ref, product) {
+final itemAvailableQuantityProvider = Provider.autoDispose.family<int, Product>((ref, product) {
   final cart = ref.watch(cartProvider).value;
   if (cart != null) {
     // get the current quantity for the given product in the cart
